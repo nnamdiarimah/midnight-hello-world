@@ -1,0 +1,23 @@
+include "std";
+export { Maybe }
+
+witness local_message(): Maybe[Opaque["string"]];
+
+ledger {
+  message: Cell[Opaque["string"]];
+  constructor() {
+    // what's the default vaule? user assigned opaque vars are not yet supported
+    // const initialMessage = new CompactTypeString();
+    // ledger.message.write("starting message");
+  }
+}
+
+export circuit set_message(): Void {
+  ledger.message.write(local_message_or_error());
+}
+
+circuit local_message_or_error(): Opaque["string"] {
+  const maybe_message = local_message();
+  assert maybe_message.is_some "No message found";
+  return maybe_message.value;
+}

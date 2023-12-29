@@ -1,0 +1,32 @@
+services:
+  indexer:
+    image: "docker.p42.at/midnight-pubsub-indexer:latest"
+    ports:
+      - "8088:8088"
+    command: ["midnight-pubsub-indexer", "-Devents-source.node-host=node"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8088/health" ]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      node:
+        condition: service_healthy
+    environment:
+      LEDGER_NETWORK_ID: "DevNet"
+  node:
+    image: "docker.p42.at/midnight-node:latest"
+    ports:
+      - "9944:9944"
+      - "9933:9933"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9933/health" ]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    environment:
+      SEED_IP: "nlb-node-peer-1.devnet-midnight.network"
+      SEED_ID: "12D3KooWP9N6rCYQDnZgxoUXcyUykDxTLGrHUcoUrQM2JVTNVjP1"
+      SEED_PHRASE: "secret-key-phrase-that-you-can-change-as-you-wish"

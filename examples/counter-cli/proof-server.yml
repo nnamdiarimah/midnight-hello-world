@@ -1,0 +1,8 @@
+services:
+  proof-server:
+    image: "docker.p42.at/proof-server:latest"
+    command: ["midnight-proof-server --network devnet"]
+    ports:
+      - "6300:6300"
+    environment:
+      RUST_BACKTRACE: "full"

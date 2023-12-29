@@ -1,0 +1,33 @@
+{
+  "extern_funcs": {
+    "pub_fetch": { "inputs": 0, "outputs": 1, "public": true },
+    "priv_fetch": { "inputs": 0, "outputs": 1, "public": false }
+  },
+  "inputs": 0,
+  "gates": [
+    [ "load_imm", "le_bytes:01" ],
+    [ "call_extern", "priv_fetch" ],
+    [ "constrain_to_boolean", 1 ],
+    [ "call_extern", "priv_fetch" ],
+    [ "assert", 1, "No message found" ],
+    [ "load_imm", "le_bytes:10" ],
+    [ "load_imm", "le_bytes:00" ],
+    [ "declare_pub_input", 3 ],
+    [ "declare_pub_input", 0 ],
+    [ "declare_pub_input", 0 ],
+    [ "declare_pub_input", 0 ],
+    [ "declare_pub_input", 4 ],
+    [ "pi_skip", 0, 5 ],
+    [ "load_imm", "le_bytes:11" ],
+    [ "load_imm", "i128:-1" ],
+    [ "declare_pub_input", 5 ],
+    [ "declare_pub_input", 0 ],
+    [ "declare_pub_input", 0 ],
+    [ "declare_pub_input", 6 ],
+    [ "declare_pub_input", 2 ],
+    [ "pi_skip", 0, 5 ],
+    [ "load_imm", "le_bytes:91" ],
+    [ "declare_pub_input", 7 ],
+    [ "pi_skip", 0, 1 ]
+  ]
+}

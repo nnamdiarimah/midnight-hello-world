@@ -1,0 +1,34 @@
+services:
+  proof-server:
+    image: "docker.p42.at/proof-server:latest"
+    ports:
+      - "6300:6300"
+    environment:
+      RUST_BACKTRACE: "full"
+  indexer:
+    image: "docker.p42.at/midnight-pubsub-indexer:latest"
+    ports:
+      - "8088:8088"
+    command: ["midnight-pubsub-indexer", "-Devents-source.node-host=node"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8088/health" ]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      node:
+        condition: service_healthy
+  node:
+    image: "docker.p42.at/midnight-node:latest"
+    ports:
+      - "9944:9944"
+      - "9933:9933"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9933/health" ]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    environment:
+      RUN_DEV_NET: "TRUE"

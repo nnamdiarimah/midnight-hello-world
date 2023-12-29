@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "index.cjs",
+  "sourceRoot": "../../../",
+  "sources": ["message.compact"],
+  "names": [],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAOE;;;;;;;;;;MAOF,AAAA,WAEC;;;;;;;;;;;;;;;;;;;;OAAA;;;GALE;EAJD;;;;;;;;;;;;;;;;;;;;IADA;;;;;;;;;;sBAAgC;;;GAK/B;EARH,AAAA,iBAAiD;;;sDAAjD,aAAiD;;;;;;;;;;;;;;GAAA;EAWjD,AAAA,eAEC;UADC,GAA8C;IAA9C;;;;;;;yGAAA,GAA8C;oHAA9C,GAA8C;;sBAAA;GAC/C;EAED,AAAA,0BAIC;UAHC,aAAsC;4BAC/B,aAAa;WACb,aAAa;GACrB;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAjBD;;;;;;;;;;;;IACE;qCAAA;;;;;;;;;;;;;uDAAgC;KAAA;;CAMjC;;;;;;;;;;"
+}
